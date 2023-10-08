@@ -107,21 +107,22 @@ class Point:
         self.y = y
         self.z = z
         # not calling isInBounds, because object may need to initialize first
-        self.visibility = True if (x < Aquarium.imageSizeX and x >= 0 and y < Aquarium.imageSizeY and y >= 0) else False
+        self.visibility = (x < Aquarium.imageSizeX) & (x >= 0) & (y < Aquarium.imageSizeY) & (y >= 0) 
     
     @property
     def XInt(self):
-        return int(roundHalfUp(self.x))
+        return roundHalfUp(self.x).astype(int)
     
     @property
     def YInt(self):
-        return int(roundHalfUp(self.y))
+        return roundHalfUp(self.y).astype(int)
 
     @property
     def isInBounds(self):
         xInt = self.XInt
         yInt = self.YInt
-        return True if (xInt < Aquarium.imageSizeX and xInt >= 0 and yInt < Aquarium.imageSizeY and yInt >= 0) else False
+        return (xInt < Aquarium.imageSizeX) & (xInt >= 0) & (yInt < Aquarium.imageSizeY) & (yInt >= 0)
+        #return True if (xInt < Aquarium.imageSizeX and xInt >= 0 and yInt < Aquarium.imageSizeY and yInt >= 0) else False
 
 
 class Fish:
